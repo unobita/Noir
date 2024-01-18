@@ -1,16 +1,13 @@
 import datetime
+import anitopy
 import logging
-import os
-import re
-import time
-import asyncio
-import json
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
+import os, time, asyncio, json
 from bot.localisation import Localisation
 from bot import (
   DOWNLOAD_LOCATION, 
@@ -19,13 +16,16 @@ from bot import (
   UPDATES_CHANNEL,
   SESSION_NAME,
   data,
-  app  
+  app, 
 )
+
 from bot.helper_funcs.ffmpeg import (
   convert_video,
   media_info,
-  take_screen_shot
+  take_screen_shot,
+  get_width_height
 )
+
 from bot.helper_funcs.display_progress import (
   progress_for_pyrogram,
   TimeFormatter,
@@ -37,9 +37,6 @@ from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 
-#from bot.helper_funcs.utils import(
-#  delete_downloads
-#)
 os.system("wget https://telegra.ph/file/1c74222f7f12c42573455.jpg -O thumb.jpg")
 
 CURRENT_PROCESSES = {}
@@ -91,7 +88,7 @@ async def incoming_compress_message_f(update):
           'running': True,
           'message': sent_message.id
         }
-          
+
         json.dump(statusMsg, f, indent=2)
       video = await bot.download_media(
         #message=update.reply_to_message,
@@ -106,12 +103,27 @@ async def incoming_compress_message_f(update):
         )
       )
       saved_file_path = video
+      eni = saved_file_path.split("/")[-1]
+      xnx = eni.split(".")[-1]
+      opm = eni.replace(f".{xnx}", " .mkv")
+      nam = opm.replace("_", " ")
+      nam = opm.replace(".", " ")
+      anitopy_options = {'allowed_delimiters': ' '}
+      new_name = anitopy.parse(nam)
+      anime_name = new_name['anime_title']
+      episode_no = new_name['episode_number']  
+      joined_string = joined_string = f"S1E{episode_no} - {anime_name} [480p][Dual][@Anime_Sensei_Network].mkv"
+      if 'anime_season' in new_name.keys():
+        animes_season = new_name['anime_season']
+        joined_string = joined_string = f"S{animes_season}E{episode_no} - {anime_name} [480p][Dual][@Anime_Sensei_Network].mkv"
+
+
       LOGGER.info(saved_file_path)  
       LOGGER.info(video)
       if( video is None ):
         try:
           await sent_message.edit_text(
-            text="Download stopped"
+            text="Download Stopped 🛑"
           )
           chat_id = LOG_CHANNEL
           utc_now = datetime.datetime.utcnow()
@@ -120,7 +132,7 @@ async def incoming_compress_message_f(update):
           bst_now = utc_now + datetime.timedelta(minutes=00, hours=6)
           bst = bst_now.strftime("%d/%m/%Y, %H:%M:%S")
           now = f"\n{ist} (GMT+05:30)`\n`{bst} (GMT+06:00)"
-          await bot.send_message(chat_id, f"**Download Stopped, Bot is Free Now !!** \n\nProcess Done at `{now}`", parse_mode="markdown")
+          await bot.send_message(chat_id, f"**Download Stopped, Bot is Free Now !!** \n\nProcess Done at `{now}`")
           await download_start.delete()
         except:
           pass
@@ -211,7 +223,7 @@ async def incoming_compress_message_f(update):
         text=Localisation.UPLOAD_START,                    
       )
       u_start = time.time()
-      caption = await create_auto_caption(resolution)
+      caption = await create_auto_caption(_f_n, qualityy)
       upload = await bot.send_document(
         chat_id=update.chat.id,
         document=o,
