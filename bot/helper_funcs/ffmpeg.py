@@ -33,10 +33,43 @@ from bot import (
 )
 
 async def convert_video(video_file, output_directory, total_time, bot, message, chan_msg):
-    # https://stackoverflow.com/a/13891070/4723940
     kk = video_file.split("/")[-1]
     aa = kk.split(".")[-1]
-    out_put_file_name = kk.replace(f".{aa}", "[ENCODED].mkv")
+    
+    if '@' in kk:
+        kk = re.sub(r'@.*?(?=\.)', '', kk)
+    
+    if kk.startswith('[') and ']' in kk:
+        kk = kk[kk.find(']') + 1:]
+    
+    season_match = re.search(r'S(\d+)', kk)
+    episode_match = re.search(r'E(\d+)', kk)
+    
+    season_number = season_match.group(1) if season_match else ''
+    episode_number = episode_match.group(1) if episode_match else ''
+    
+    kk = re.sub(r'S\d+', '', kk)
+    kk = re.sub(r'E\d+', '', kk)
+    
+    if not season_number and episode_number:
+        kk = f'E{episode_number}' + kk
+        
+    elif not season_number and not episode_number and re.search(r'\d+', kk):
+        number_match = re.search(r'\d+', kk)
+        number = number_match.group(0)
+        kk = f'{number} ' + kk.replace(number, '', 1)
+    
+    elif season_number or episode_number:
+        kk = f'S{season_number}E{episode_number}' + kk
+
+    if resolution[0] == "854x480":
+        kk = re.sub(r'(720p|1080p|HDRip)', '480p', kk)
+
+    if resolution[0] == "1280x720":
+        kk = re.sub(r'(1080p|HDRip)', '720p', kk)
+    
+    out_put_file_name = kk.replace(f".{aa}", "[@Animezenith].mkv")
+    
     #out_put_file_name = video_file + "_compressed" + ".mkv"
     progress = output_directory + "/" + "progress.txt"
     with open(progress, 'w') as f:
