@@ -37,7 +37,7 @@ from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 
-os.system("wget https://telegra.ph/file/1c74222f7f12c42573455.jpg -O thumb.jpg")
+os.system("wget https://te.legra.ph/file/86e958f9fc0d7cbdf1a28.jpg -O thumb.jpg")
 
 CURRENT_PROCESSES = {}
 CHAT_FLOOD = {}
@@ -52,7 +52,7 @@ async def incoming_start_message_f(bot, update):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton('Source Code 👻', url='https://t.me/Asimplekid')
+                    InlineKeyboardButton('Channel', url='https://t.me/Anime_Sensei_Network')
                 ]
             ]
         ),
@@ -112,10 +112,10 @@ async def incoming_compress_message_f(update):
       new_name = anitopy.parse(nam)
       anime_name = new_name['anime_title']
       episode_no = new_name['episode_number']  
-      joined_string = joined_string = f"S1E{episode_no} - {anime_name} [480p][Dual][@Anime_Sensei_Network].mkv"
+      joined_string = joined_string = f"S1E{episode_no} - {anime_name} [480p][Sub][@Ongoing_Sensei].mkv"
       if 'anime_season' in new_name.keys():
         animes_season = new_name['anime_season']
-        joined_string = joined_string = f"S{animes_season}E{episode_no} - {anime_name} [480p][Dual][@Anime_Sensei_Network].mkv"
+        joined_string = joined_string = f"S{animes_season}E{episode_no} - {anime_name} [480p][Sub][@Ongoing_Sensei].mkv"
 
 
       LOGGER.info(saved_file_path)  
