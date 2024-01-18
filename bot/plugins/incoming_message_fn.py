@@ -350,4 +350,31 @@ async def convert_video(
     out_put_file_name = kk.replace(f".{aa}", "[@Animezenith].mkv")
     
     return output_file_path
+    
+async def incoming_cancel_message_f(bot, update):
+  """/cancel command"""
+  #if update.from_user.id != 1391975600 or 888605132 or 1760568371:
+  if update.from_user.id not in AUTH_USERS:      
+        
+    try:
+      await update.message.delete()
+    except:
+      pass
+    return
 
+  status = DOWNLOAD_LOCATION + "/status.json"
+  if os.path.exists(status):
+    inline_keyboard = []
+    ikeyboard = []
+    ikeyboard.append(InlineKeyboardButton("Yes 🚫", callback_data=("fuckingdo").encode("UTF-8")))
+    ikeyboard.append(InlineKeyboardButton("No 🤗", callback_data=("fuckoff").encode("UTF-8")))
+    inline_keyboard.append(ikeyboard)
+    reply_markup = InlineKeyboardMarkup(inline_keyboard)
+    await update.reply_text("Are you sure? 🚫 This will stop the compression!", reply_markup=reply_markup, quote=True)
+  else:
+   # delete_downloads()
+    await bot.send_message(
+      chat_id=update.chat.id,
+      text="No active compression exists",
+      reply_to_message_id=update.message_id
+    )
