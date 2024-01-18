@@ -31,9 +31,6 @@ from bot.helper_funcs.display_progress import (
     humanbytes
 )
 
-
-
-
 async def exec_message_f(client, message):
   if message.from_user.id in AUTH_USERS:
     if True:
