@@ -1,6 +1,8 @@
 # oof
 from datetime import datetime as dt
 import os
+from bot
+
 from bot import (
     APP_ID,
     API_HASH,
@@ -100,9 +102,15 @@ if __name__ == "__main__" :
     async def settings(app, message):
         if message.from_user.id in AUTH_USERS:
             await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>Codec</b> : {codec[0]} \n<b>Crf</b> : {crf[0]} \n<b>Resolution</b> : {resolution[0]} \n<b>Preset</b> : {preset[0]} \n<b>Audio Bitrates</b> : {audio_b[0]}")
-            
-            
-               
+
+    @app.on_message(filters.incoming & filters.command(["info", f"info@{BOT_USERNAME}"]))
+    async def media_info(app, message):
+        await media_info(message)
+
+    @app.on_message(filters.incoming & filters.command(["sc", f"sc@{BOT_USERNAME}"]))
+    async def screen_shot(app, message):
+        await take_screen_shot(message)    
+                  
     @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
         if message.from_user.id in AUTH_USERS:
