@@ -1,7 +1,7 @@
 # oof
 from datetime import datetime as dt
 import os
-from bot
+from bot.helper_funcs.ffmpeg import media_info, take_screen_shot
 
 from bot import (
     APP_ID,
