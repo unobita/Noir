@@ -1,5 +1,6 @@
 import datetime
 import anitopy
+import re
 import logging
 logging.basicConfig(
     level=logging.DEBUG,
