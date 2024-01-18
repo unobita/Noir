@@ -158,7 +158,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["compress", f"compress@{BOT_USERNAME}"]))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatmanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @Sensei_Rimuru")
         query = await message.reply_text("ᴀᴅᴅᴇᴅ ᴛᴏ ǫᴜᴇᴜᴇ...\nᴘʟᴇᴀsᴇ ʙᴇ ᴘᴀᴛɪᴇɴᴛ ʏᴏᴜ ᴇɴᴄᴏᴅᴇ ᴡɪʟʟ sᴛᴀʀᴛ sᴏᴏɴ", quote=True)
         data.append(message.reply_to_message)
         if len(data) == 1:
