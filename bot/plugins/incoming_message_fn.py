@@ -82,7 +82,7 @@ async def incoming_start_message_f(bot, update):
          #       disable_web_page_preview=True)
           #  return
     await bot.send_message(
-        chat_id=update.chat.id,
+        chat_id=update.id,
         text=Localisation.START_TEXT,
         reply_markup=InlineKeyboardMarkup(
             [
