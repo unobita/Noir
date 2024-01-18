@@ -64,7 +64,6 @@ async def incoming_start_message_f(bot, update):
     
 async def incoming_compress_message_f(update):
   """/compress command"""
-    
   isAuto = True
     #saved_file_path = video #DOWNLOAD_LOCATION + "/" + filename
     #LOGGER.info(saved_file_path)
