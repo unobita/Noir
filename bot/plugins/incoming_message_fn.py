@@ -3,34 +3,32 @@ import anitopy
 import re
 import logging
 logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+   logging.basicConfig(
+   level=logging.DEBUG,
+   format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 import os, time, asyncio, json
 from bot.localisation import Localisation
 from bot import (
-  DOWNLOAD_LOCATION, 
-  AUTH_USERS,
-  LOG_CHANNEL,
-  UPDATES_CHANNEL,
-  SESSION_NAME,
-  data,
-  app, 
+ DOWNLOAD_LOCATION, 
+ AUTH_USERS,
+ LOG_CHANNEL,
+ UPDATES_CHANNEL,
+ SESSION_NAME,
+ data,
+ app  
 )
-
 from bot.helper_funcs.ffmpeg import (
-  convert_video,
-  media_info,
-  take_screen_shot,
-  get_width_height
+ convert_video,
+ media_info,
+ take_screen_shot
 )
-
 from bot.helper_funcs.display_progress import (
-  progress_for_pyrogram,
-  TimeFormatter,
-  humanbytes
+ progress_for_pyrogram,
+ TimeFormatter,
+ humanbytes
 )
 
 from pyrogram import Client, filters
