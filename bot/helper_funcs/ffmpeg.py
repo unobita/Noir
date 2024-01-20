@@ -71,7 +71,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     if resolution[0] == "1920x1080":
         kk = re.sub(r'(HDRip)', '1080p', kk)
     
-    out_put_file_name = kk.replace(f".{aa}", "[@Ongoing_Sensei].mkv")
+    out_put_file_name = kk.replace(f".{aa}", "@Ongoing_Sensei].mkv")
     
     #out_put_file_name = video_file + "_compressed" + ".mkv"
     progress = output_directory + "/" + "progress.txt"
