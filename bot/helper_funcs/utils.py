@@ -27,7 +27,7 @@ async def on_task_complete():
 
 async def add_task(message: Message):
     try:
-        os.system('rm -rf /app/downloads/*')
+        os.system('rm -rf /app/downloads/ffmpeg')
         await incoming_compress_message_f(message)
     except Exception as e:
         LOGGER.info(e)  
