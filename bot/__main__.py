@@ -173,11 +173,8 @@ if __name__ == "__main__" :
         
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
-        if message.from_user.id in AUTH_USERS:
       data.clear()
       await message.reply_text("✅ Successfully cleared Queue ...")
-  else:
-       await message.reply_text("Error")
         
     @app.on_message(filters.incoming & (filters.video | filters.document))
     async def help_message(app, message):
