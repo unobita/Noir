@@ -44,9 +44,9 @@ from bot.plugins.status_message_fn import (
 from bot.commands import Command
 from bot.plugins.call_back_button_handler import button
 sudo_users = "2036803347" 
-crf.append("24")
+crf.append("28")
 codec.append("libx264")
-resolution.append("1280x720")
+resolution.append("854x480")
 preset.append("veryfast")
 audio_b.append("40k")
 # 🤣
@@ -179,7 +179,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.video | filters.document))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatmanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @Sensei_Rimuru")
         query = await message.reply_text("ᴀᴅᴅᴇᴅ ᴛᴏ ǫᴜᴇᴜᴇ...\nᴘʟᴇᴀsᴇ ʙᴇ ᴘᴀᴛɪᴇɴᴛ ʏᴏᴜ ᴇɴᴄᴏᴅᴇ ᴡɪʟʟ sᴛᴀʀᴛ sᴏᴏɴ", quote=True)
         data.append(message)
         if len(data) == 1:
@@ -189,7 +189,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.photo))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @NINJA_NARUTO_SAK_2")
+            return await message.reply_text("You are not authorised to use this bot contact @Sensei_Rimuru")
         os.system('rm thumb.jpg')
         await message.download(file_name='/app/thumb.jpg')
         await message.reply_text('Thumbnail Added')
