@@ -2,6 +2,9 @@
 from datetime import datetime as dt
 import os
 from bot.helper_funcs.ffmpeg import media_info, take_screen_shot
+from aiogram import types
+from aiogram.types import MediaGroup
+from aiogram.dispatcher.filters import Command
 
 from bot import (
     APP_ID,
@@ -54,6 +57,62 @@ audio_b.append("40k")
 
 uptime = dt.now()
 
+
+async def gen_mediainfo(message: Message, link=None, media=None, mmsg=None):
+    temp_send = await message.reply_html('<i>Generating MediaInfo...</i>')
+    try:
+        path = "Mediainfo/"
+        if not os.path.isdir(path):
+            os.mkdir(path)
+        if link:
+            filename = re.search(".+/(.+)", link).group(1)
+            des_path = os.path.join(path, filename)
+            headers = {"user-agent":"Mozilla/5.0 (Linux; Android 12; 2201116PI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36"}
+            async with app.http_client.get(link, headers=headers) as response:
+                async with aiofiles.open(des_path, "wb") as f:
+                    async for chunk in response.aiter_bytes():
+                        await f.write(chunk)
+                        break
+        elif media:
+            des_path = os.path.join(path, media.file_name)
+            if media.file_size <= 50000000:
+                await mmsg.download(des_path)
+            else:
+                async for chunk in media.iter_content(10000000):
+                    async with aiofiles.open(des_path, "ab") as f:
+                        await f.write(chunk)
+        stdout, _, _ = await asyncio.create_subprocess_shell(f'mediainfo "{des_path}"')
+        tc = f"<h4>📌 {os.path.basename(des_path)}</h4><br><br>"
+        if len(stdout) != 0:
+            tc += parseinfo(stdout)
+    except Exception as e:
+        LOGGER.error(e)
+        await temp_send.edit(f"MediaInfo Stopped due to {str(e)}")
+    finally:
+        os.remove(des_path)
+    link_id = (await telegraph.create_page(title='MediaInfo X', content=tc))["path"]
+    await temp_send.edit(f"<b>MediaInfo:</b>\n\n➲ <b>Link :</b> https://graph.org/{link_id}", disable_web_page_preview=False)
+
+section_dict = {'General': '🗒', 'Video': '🎞', 'Audio': '🔊', 'Text': '🔠', 'Menu': '🗃'}
+def parseinfo(out):
+    tc = ''
+    trigger = False
+    for line in out.split('\n'):
+        for section, emoji in section_dict.items():
+            if line.startswith(section):
+                trigger = True
+                if not line.startswith('General'):
+                    tc += '</pre><br>'
+                tc += f"<h4>{emoji} {line.replace('Text', 'Subtitle')}</h4>"
+                break
+        if trigger:
+            tc += '<br><pre>'
+            trigger = False
+        else:
+            tc += line + '\n'
+    tc += '</pre><br>'
+    return tc
+    
 def ts(milliseconds: int) -> str:
     seconds, milliseconds = divmod(int(milliseconds), 1000)
     minutes, seconds = divmod(seconds, 60)
@@ -104,12 +163,28 @@ if __name__ == "__main__" :
             await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>Codec</b> : {codec[0]} \n<b>Crf</b> : {crf[0]} \n<b>Resolution</b> : {resolution[0]} \n<b>Preset</b> : {preset[0]} \n<b>Audio Bitrates</b> : {audio_b[0]}")
 
     @app.on_message(filters.incoming & filters.command(["info", f"info@{BOT_USERNAME}"]))
-    async def media_info(app, message):
-        await media_info(message)
+    async def mediainfo_command(_, message: Message):
+        rply = message.reply_to_message
+        help_msg = "<b>By replying to media:</b>"
+        help_msg += f"\n<code>/mediainfo [media]</code>"
+        help_msg += "\n\n<b>By reply/sending download link:</b>"
+        help_msg += f"\n<code>/mediainfo [link]</code>"
+        
+        if len(message.command) > 1 or (rply and rply.text):
+            link = rply.text if rply else message.command[1]
+            return await gen_mediainfo(message, link)
+        elif rply:
+            if rply.media:
+                return await gen_mediainfo(message, None, rply.media, rply)
+            else:
+                return await message.reply(help_msg)
+        else:
+            return await message.reply(help_msg)
+
 
     @app.on_message(filters.incoming & filters.command(["sc", f"sc@{BOT_USERNAME}"]))
     async def screen_shot(app, message):
-        await take_screen_shot(message)    
+        await take_screen_shot(app, message)    
                   
     @app.on_message(filters.incoming & filters.command(["resolution", f"resolution@{BOT_USERNAME}"]))
     async def changer(app, message):
