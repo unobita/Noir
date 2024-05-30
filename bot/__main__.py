@@ -92,16 +92,16 @@ if __name__ == "__main__" :
     async def changecrf(app, message):
         if message.from_user.id in AUTH_USERS:
             cr = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {cr} crf"
+            OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {cr} crf"
             crf.insert(0, f"{cr}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("ɪᴛ's ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅ 😮‍💨")
             
     @app.on_message(filters.incoming & filters.command(["settings", f"settings@{BOT_USERNAME}"]))
     async def settings(app, message):
         if message.from_user.id in AUTH_USERS:
-            await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>Codec</b> : {codec[0]} \n<b>Crf</b> : {crf[0]} \n<b>Resolution</b> : {resolution[0]} \n<b>Preset</b> : {preset[0]} \n<b>Audio Bitrates</b> : {audio_b[0]}")
+            await message.reply_text(f"<b>The current settings will be added to your video file :</b>\n\n<b>ᴄᴏᴅᴇᴄ</b> : {codec[0]} \n<b>ᴄʀғ</b> : {crf[0]} \n<b>ʀᴇsᴏʟᴜᴛɪᴏɴ</b> : {resolution[0]} \n<b>ᴘʀᴇsᴇᴛ</b> : {preset[0]} \n<b>ᴀᴜᴅɪᴏ</b> : {audio_b[0]}")
 
     @app.on_message(filters.incoming & filters.command(["info", f"info@{BOT_USERNAME}"]))
     async def media_info(app, message):
@@ -115,11 +115,11 @@ if __name__ == "__main__" :
     async def changer(app, message):
         if message.from_user.id in AUTH_USERS:
             r = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {r} resolution"
+            OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {r} resolution"
             resolution.insert(0, f"{r}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("ɪᴛ's ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅ 😮‍💨")
 
             
                
@@ -127,32 +127,32 @@ if __name__ == "__main__" :
     async def changepr(app, message):
         if message.from_user.id in AUTH_USERS:
             pop = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {pop} preset"
+            OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {pop} preset"
             preset.insert(0, f"{pop}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("ɪᴛ's ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅ 😮‍💨")
 
             
     @app.on_message(filters.incoming & filters.command(["codec", f"codec@{BOT_USERNAME}"]))
     async def changecode(app, message):
         if message.from_user.id in AUTH_USERS:
             col = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {col} codec"
+            OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {col} codec"
             codec.insert(0, f"{col}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("ɪᴛ's ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅ 😮‍💨")
              
     @app.on_message(filters.incoming & filters.command(["audio", f"audio@{BOT_USERNAME}"]))
     async def changea(app, message):
         if message.from_user.id in AUTH_USERS:
             aud = message.text.split(" ", maxsplit=1)[1]
-            OUT = f"I will be using : {aud} audio"
+            OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {aud} audio"
             audio_b.insert(0, f"{aud}")
             await message.reply_text(OUT)
         else:
-            await message.reply_text("Error")
+            await message.reply_text("ɪᴛ's ʙᴏᴛ ᴀᴅᴍɪɴ ᴄᴏᴍᴍᴀɴᴅ 😮‍💨")
             
         
     @app.on_message(filters.incoming & filters.command(["compress", f"compress@{BOT_USERNAME}"]))
@@ -174,13 +174,13 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["clear", f"clear@{BOT_USERNAME}"]))
     async def restarter(app, message):
       data.clear()
-      await message.reply_text("✅ Successfully cleared Queue ...")
+      await message.reply_text("✅sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʟᴇᴀʀᴇᴅ ǫᴜᴇᴜᴇ ...")
          
         
     @app.on_message(filters.incoming & (filters.video | filters.document))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @TheBatmanShan")
+            return await message.reply_text("You are not authorised to use this bot contact @Sensei_Rimuru")
         query = await message.reply_text("ᴀᴅᴅᴇᴅ ᴛᴏ ǫᴜᴇᴜᴇ...\nᴘʟᴇᴀsᴇ ʙᴇ ᴘᴀᴛɪᴇɴᴛ ʏᴏᴜ ᴇɴᴄᴏᴅᴇ ᴡɪʟʟ sᴛᴀʀᴛ sᴏᴏɴ", quote=True)
         data.append(message)
         if len(data) == 1:
@@ -190,10 +190,10 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & (filters.photo))
     async def help_message(app, message):
         if message.chat.id not in AUTH_USERS:
-            return await message.reply_text("You are not authorised to use this bot contact @NINJA_NARUTO_SAK_2")
+            return await message.reply_text("You are not authorised to use this bot contact @Sensei_Rimuru")
         os.system('rm thumb.jpg')
         await message.download(file_name='/app/thumb.jpg')
-        await message.reply_text('Thumbnail Added')
+        await message.reply_text('ᴛʜᴜᴍʙɴᴀɪʟ sᴀᴠᴇᴅ ✅')
        
     @app.on_message(filters.incoming & filters.command(["cancel", f"cancel@{BOT_USERNAME}"]))
     async def help_message(app, message):
@@ -214,7 +214,7 @@ if __name__ == "__main__" :
    
     @app.on_message(filters.incoming & filters.command(["help", f"help@{BOT_USERNAME}"]))
     async def help_message(app, message):
-        await message.reply_text("Hi, I am <b>Video Encoder bot</b>\n\n➥ Send me your telegram files\n➥ I will encode them one by one as I have <b>queue feature</b>\n➥ Just send me the jpg/pic and it will be set as your custom thumbnail \n➥ For ffmpeg lovers - u can change crf by /eval crf.insert(0, 'crf value')\n➥ Contact ☆ @Sensei_Rimuru \n\n🏷<b>Maintained By : @Anime_Sensei_Network</b>", quote=True)
+        await message.reply_text("<b>Maintained By : @Anime_Sensei_Network</b>", quote=True)
   
     @app.on_message(filters.incoming & filters.command(["log", f"log@{BOT_USERNAME}"]))
     async def help_message(app, message):
