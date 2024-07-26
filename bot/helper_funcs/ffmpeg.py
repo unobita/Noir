@@ -5,6 +5,7 @@ logging.basicConfig(
 )
 LOGGER = logging.getLogger(__name__)
 
+import ffmpeg 
 import asyncio
 import os
 import time
