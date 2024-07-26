@@ -8,6 +8,7 @@ logging.basicConfig(
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 LOGGER = logging.getLogger(__name__)
 
+import ffmpeg 
 import os
 from bot import data
 from bot.plugins.incoming_message_fn import incoming_compress_message_f
