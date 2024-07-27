@@ -1,3 +1,4 @@
+import ffmpeg
 import asyncio
 import io
 import logging
