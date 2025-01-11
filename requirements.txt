@@ -5,7 +5,7 @@ Pillow
 psutil
 hachoir
 tgcrypto
-pyrogram==2.0.106
+pyrogram
 motor
 https://github.com/pyrogram/pyrogram/archive/master.zip
 dnspython
