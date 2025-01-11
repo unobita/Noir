@@ -83,7 +83,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
      ## lol 😂
     crf.append("26")
     codec.append("libx264")
-    resolution.append("1280x720")
+    resolution.append("854x480")
     preset.append("veryfast")
     audio_b.append("40k")
     watermark.append('-vf "drawtext=fontfile=font.ttf:fontsize=25:fontcolor=white:bordercolor=black@0.50:x=w-tw-10:y=10:box=1:boxcolor=black@0.5:boxborderw=6:text=Anime Sensei"')
