@@ -9,4 +9,3 @@ pyrogram
 motor
 https://github.com/pyrogram/pyrogram/archive/master.zip
 dnspython
-ffmpeg
