@@ -126,7 +126,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["preset", f"preset@{BOT_USERNAME}"]))
     async def changepr(app, message):
         if message.from_user.id in AUTH_USERS:
-            pop = message.text.split(" ", maxsplit=1)[1]
+            pop = message.text.split(" ", maxsplit=4)[4]
             OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {pop} preset"
             preset.insert(0, f"{pop}")
             await message.reply_text(OUT)
@@ -147,7 +147,7 @@ if __name__ == "__main__" :
     @app.on_message(filters.incoming & filters.command(["audio", f"audio@{BOT_USERNAME}"]))
     async def changea(app, message):
         if message.from_user.id in AUTH_USERS:
-            aud = message.text.split(" ", maxsplit=1)[1]
+            aud = message.text.split(" ", maxsplit=4)[4]
             OUT = f"ɪ ᴡɪʟʟ ʙᴇ ᴜsɪɴɢ : {aud} audio"
             audio_b.insert(0, f"{aud}")
             await message.reply_text(OUT)
