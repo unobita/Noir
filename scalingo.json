@@ -11,47 +11,47 @@
   ],
   "success_url": "https://t.me/linux_repo",
   "website": "https://t.me/Discovery_Updates",
-  "repository": "https://github.com/GitXBot101/Rulf-Encoder",
+  "repository": "https://github.com/AbirHasan2005/VideoCompress",
   "env": {
-    "OWNER": {
+    "ENV": {
       "description": "Setting this to ANYTHING will enable VARs when in ENV mode",
-      "value": "5179011789"
+      "value": "ANYTHING"
     },
-    "DATABASE_URL": {
+    "SESSION_NAME": {
       "description": "Keep this default",
-      "value": "",
+      "value": "AHCompressBot",
       "required": true
     },
-    "BOT_TOKEN": {
+    "TG_BOT_TOKEN": {
       "description": "Your bot token, as a string. Get this from @BotFather",
-      "value": "",
+      "value": "5410007314:AAGeIGKprHB9EXvSIG68GC2mgr87JP4MG5Q",
       "required": true
     },
-    "API_ID": {
+    "APP_ID": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "",
+      "value": "26376042",
       "required": true
     },
     "API_HASH": {
       "description": "Get this value from https://my.telegram.org",
-      "value": "",
+      "value": "1f5343b0646645ca1eaf7c4759fc248f",
       "required": true
     },
     "BOT_USERNAME": {
       "description": "Your Bot Username. Without `@` before Username!",
-      "value": "",
+      "value": "5342561932",
       "required": true
     },
     "LOG_CHANNEL": {
       "description": "Your Bot's Log Channel's Username. For Help ask in @linux_repo",
-      "value": "",
+      "value": "  -1001533601450",
       "required": true
     },
     "AUTH_USERS": {
       "description": "Allow only pre-defined users to use this bot as Sudo User. Separate with Space. Just for using Admin Commands.",
-      "value": "5179011789",
+      "value": "5385471287",
       "required": true
     }
   },
-  "stack": "container"
+  "stack": "container
 }
