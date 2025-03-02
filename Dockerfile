@@ -1,3 +1,4 @@
+FROM python:3.9.2-slim-buster
 WORKDIR /app
 COPY requirements.txt .
 RUN apt-get update \
