@@ -7,6 +7,6 @@ hachoir
 tgcrypto
 pyrogram
 motor
-https://github.com/pyrogram/pyrogram/archive/master.zip
+git+https://github.com/KurimuzonAkuma/pyrogram.git
 dnspython
 ffmpeg
